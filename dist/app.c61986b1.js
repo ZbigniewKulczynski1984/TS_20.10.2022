@@ -121,13 +121,29 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 "use strict";
 
 var btn = document.getElementById('exchange');
+var gold = document.getElementById('gold');
+var silver = document.getElementById('silver');
+var copper = document.getElementById('copper');
 if (btn !== null) {
-  btn.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  });
+  if (btn instanceof HTMLButtonElement) {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (gold != null && gold instanceof HTMLInputElement) {
+        gold.valueAsNumber;
+      }
+      if (silver != null && silver instanceof HTMLInputElement) {
+        silver.valueAsNumber;
+      }
+      if (copper != null && copper instanceof HTMLInputElement) {
+        copper.valueAsNumber;
+      }
+    });
+  } else {
+    throw new Error("HTML element for exchange is not a button");
+  }
 } else {
-  console.log('error');
+  throw new Error("Button for exchange not found");
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
