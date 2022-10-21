@@ -1,53 +1,43 @@
+import { Exchanger } from './Exchanger';
+
 initEventListener();
 
 function initEventListener() {
-    const btn: HTMLElement | null = document.getElementById('exchange');
+
+    const btn: HTMLElement | null = document.getElementById("exchange");
+    const resultText: HTMLElement | null = document.getElementById("result");
+
+    const getInputNumberValue = (id : string) : number => {
+        const element: HTMLElement | null = document.getElementById(id);
+
+        if (element != null && element instanceof HTMLInputElement) {
+            return element.valueAsNumber;
+        }
+        else {
+            throw new Error(`HTML element is null or wrong type`);
+        }
+    }
 
     if (btn !== null) {
         if (btn instanceof HTMLButtonElement) {
-            btn.addEventListener<'click'>('click', (event: MouseEvent) => {
+            btn.addEventListener<"click">("click", (event: MouseEvent) => {
                 event.preventDefault();
                 event.stopPropagation();
-                getGold();
-                getSilver();
-                getCopper();
-
+                const ex: Exchanger = new Exchanger(
+                    getInputNumberValue("gold"),
+                    getInputNumberValue("silver"),
+                    getInputNumberValue("copper")
+                );
+                if (resultText !== null) {
+                    resultText.innerText = (`${ex.toCopper()}`);
+                }
             });
-        } else {
+        }
+        else {
             throw new Error(`HTML element for exchange is not a button`);
         }
-    } else {
+    }
+    else {
         throw new Error(`Button for exchange not found`);
     }
 }
-
-function getCopper() {
-    const copper: HTMLElement | null = document.getElementById('copper');
-
-    if (copper != null && copper instanceof HTMLInputElement) {
-         copper.valueAsNumber;
-    } else {
-        throw new Error(`HTML element is null wrong type`);
-    }
-}
-
-function getSilver() {
-    const silver: HTMLElement | null = document.getElementById('silver');
-
-    if (silver != null && silver instanceof HTMLInputElement) {
-        return silver.valueAsNumber;
-    } else {
-        throw new Error(`HTML element is null wrong type`);
-    }
-}
-
-function getGold() {
-    const gold: HTMLElement | null = document.getElementById('gold');
-
-    if (gold != null && gold instanceof HTMLInputElement) {
-        return gold.valueAsNumber;
-    } else {
-        throw new Error(`HTML element is null wrong type`);
-    }
-}
-

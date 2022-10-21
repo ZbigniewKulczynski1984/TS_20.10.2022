@@ -117,24 +117,54 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"app.ts":[function(require,module,exports) {
+})({"Exchanger.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var Exchanger = /** @class */function () {
+  function Exchanger(gold, silver, copper) {
+    this.gold = gold;
+    this.silver = silver;
+    this.copper = copper;
+  }
+  Exchanger.prototype.toCopper = function () {
+    var goldToCopper = this.gold * 20 * 12;
+    var silverToCopper = this.silver * 12;
+    return goldToCopper + silverToCopper + this.copper;
+  };
+  return Exchanger;
+}();
+exports.Exchanger = Exchanger;
+},{}],"App.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var Exchanger_1 = require("./Exchanger");
 initEventListener();
 function initEventListener() {
-  var btn = document.getElementById('exchange');
+  var btn = document.getElementById("exchange");
+  var resultText = document.getElementById("result");
+  var getInputNumberValue = function getInputNumberValue(id) {
+    var element = document.getElementById(id);
+    if (element != null && element instanceof HTMLInputElement) {
+      return element.valueAsNumber;
+    } else {
+      throw new Error("HTML element is null or wrong type");
+    }
+  };
   if (btn !== null) {
     if (btn instanceof HTMLButtonElement) {
-      btn.addEventListener('click', function (event) {
+      btn.addEventListener("click", function (event) {
         event.preventDefault();
         event.stopPropagation();
-        var ex;
-        getGold();
-        getSilver();
-        getCopper();
+        var ex = new Exchanger_1.Exchanger(getInputNumberValue("gold"), getInputNumberValue("silver"), getInputNumberValue("copper"));
+        if (resultText !== null) {
+          resultText.innerText = "" + ex.toCopper();
+        }
       });
     } else {
       throw new Error("HTML element for exchange is not a button");
@@ -143,31 +173,7 @@ function initEventListener() {
     throw new Error("Button for exchange not found");
   }
 }
-function getCopper() {
-  var copper = document.getElementById('copper');
-  if (copper != null && copper instanceof HTMLInputElement) {
-    copper.valueAsNumber;
-  } else {
-    throw new Error("HTML element is null wrong type");
-  }
-}
-function getSilver() {
-  var silver = document.getElementById('silver');
-  if (silver != null && silver instanceof HTMLInputElement) {
-    return silver.valueAsNumber;
-  } else {
-    throw new Error("HTML element is null wrong type");
-  }
-}
-function getGold() {
-  var gold = document.getElementById('gold');
-  if (gold != null && gold instanceof HTMLInputElement) {
-    return gold.valueAsNumber;
-  } else {
-    throw new Error("HTML element is null wrong type");
-  }
-}
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./Exchanger":"Exchanger.ts"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -336,5 +342,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.ts"], null)
-//# sourceMappingURL=/app.c61986b1.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","App.ts"], null)
+//# sourceMappingURL=/App.7a936cda.js.map
