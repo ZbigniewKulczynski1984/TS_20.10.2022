@@ -124,20 +124,24 @@ var btn = document.getElementById('exchange');
 var gold = document.getElementById('gold');
 var silver = document.getElementById('silver');
 var copper = document.getElementById('copper');
+var g;
+var s;
+var c;
 if (btn !== null) {
   if (btn instanceof HTMLButtonElement) {
     btn.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
       if (gold != null && gold instanceof HTMLInputElement) {
-        gold.valueAsNumber;
+        g = gold.valueAsNumber;
       }
       if (silver != null && silver instanceof HTMLInputElement) {
-        silver.valueAsNumber;
+        s = silver.valueAsNumber;
       }
       if (copper != null && copper instanceof HTMLInputElement) {
-        copper.valueAsNumber;
+        c = copper.valueAsNumber;
       }
+      console.log(g + " " + s + " " + c);
     });
   } else {
     throw new Error("HTML element for exchange is not a button");
