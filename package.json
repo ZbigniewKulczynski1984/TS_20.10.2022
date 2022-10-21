@@ -19,5 +19,8 @@
   "homepage": "https://github.com/ZbigniewKulczynski1984/TS_20.10.2022#readme",
   "devDependencies": {
     "typescript": "3.5"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
