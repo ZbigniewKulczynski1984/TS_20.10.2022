@@ -1,15 +1,8 @@
-const btn: HTMLElement | null = document.getElementById('exchange');
-const gold: HTMLElement | null = document.getElementById('gold');
-const silver: HTMLElement | null = document.getElementById('silver');
-const copper: HTMLElement | null = document.getElementById('copper');
-
-let g: number;
-let s: number;
-let c: number;
-
 initEventListener();
 
 function initEventListener() {
+    const btn: HTMLElement | null = document.getElementById('exchange');
+
     if (btn !== null) {
         if (btn instanceof HTMLButtonElement) {
             btn.addEventListener<'click'>('click', (event: MouseEvent) => {
@@ -29,24 +22,30 @@ function initEventListener() {
 }
 
 function getCopper() {
+    const copper: HTMLElement | null = document.getElementById('copper');
+
     if (copper != null && copper instanceof HTMLInputElement) {
-        c = copper.valueAsNumber;
+         copper.valueAsNumber;
     } else {
         throw new Error(`HTML element is null wrong type`);
     }
 }
 
 function getSilver() {
+    const silver: HTMLElement | null = document.getElementById('silver');
+
     if (silver != null && silver instanceof HTMLInputElement) {
-        s = silver.valueAsNumber;
+        return silver.valueAsNumber;
     } else {
         throw new Error(`HTML element is null wrong type`);
     }
 }
 
 function getGold() {
+    const gold: HTMLElement | null = document.getElementById('gold');
+
     if (gold != null && gold instanceof HTMLInputElement) {
-        g = gold.valueAsNumber;
+        return gold.valueAsNumber;
     } else {
         throw new Error(`HTML element is null wrong type`);
     }

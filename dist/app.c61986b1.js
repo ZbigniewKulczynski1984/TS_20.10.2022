@@ -120,15 +120,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"app.ts":[function(require,module,exports) {
 "use strict";
 
-var btn = document.getElementById('exchange');
-var gold = document.getElementById('gold');
-var silver = document.getElementById('silver');
-var copper = document.getElementById('copper');
-var g;
-var s;
-var c;
 initEventListener();
 function initEventListener() {
+  var btn = document.getElementById('exchange');
   if (btn !== null) {
     if (btn instanceof HTMLButtonElement) {
       btn.addEventListener('click', function (event) {
@@ -146,22 +140,25 @@ function initEventListener() {
   }
 }
 function getCopper() {
+  var copper = document.getElementById('copper');
   if (copper != null && copper instanceof HTMLInputElement) {
-    c = copper.valueAsNumber;
+    copper.valueAsNumber;
   } else {
     throw new Error("HTML element is null wrong type");
   }
 }
 function getSilver() {
+  var silver = document.getElementById('silver');
   if (silver != null && silver instanceof HTMLInputElement) {
-    s = silver.valueAsNumber;
+    return silver.valueAsNumber;
   } else {
     throw new Error("HTML element is null wrong type");
   }
 }
 function getGold() {
+  var gold = document.getElementById('gold');
   if (gold != null && gold instanceof HTMLInputElement) {
-    g = gold.valueAsNumber;
+    return gold.valueAsNumber;
   } else {
     throw new Error("HTML element is null wrong type");
   }
