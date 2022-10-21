@@ -120,15 +120,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"app.ts":[function(require,module,exports) {
 "use strict";
 
-// const btn : HTMLElement | null = document.getElementById('exchange');
-// if(btn!==null) {
-//     btn.addEventListener<"click">("click", (event: MouseEvent) => {
-//         event.preventDefault();
-//         event.stopPropagation();
-//     })
-// } else {
-//     console.log('error')
-// }
+var btn = document.getElementById('exchange');
+if (btn !== null) {
+  btn.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  });
+} else {
+  console.log('error');
+}
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
