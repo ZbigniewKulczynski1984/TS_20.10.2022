@@ -127,33 +127,44 @@ var copper = document.getElementById('copper');
 var g;
 var s;
 var c;
-if (btn !== null) {
-  if (btn instanceof HTMLButtonElement) {
-    btn.addEventListener('click', function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      if (gold != null && gold instanceof HTMLInputElement) {
-        g = gold.valueAsNumber;
-      } else {
-        throw new Error("HTML element is null wrong type");
-      }
-      if (silver != null && silver instanceof HTMLInputElement) {
-        s = silver.valueAsNumber;
-      } else {
-        throw new Error("HTML element is null wrong type");
-      }
-      if (copper != null && copper instanceof HTMLInputElement) {
-        c = copper.valueAsNumber;
-      } else {
-        throw new Error("HTML element is null wrong type");
-      }
-      console.log(g + " " + s + " " + c);
-    });
+initEventListener();
+function initEventListener() {
+  if (btn !== null) {
+    if (btn instanceof HTMLButtonElement) {
+      btn.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        getGold();
+        getSilver();
+        getCopper();
+      });
+    } else {
+      throw new Error("HTML element for exchange is not a button");
+    }
   } else {
-    throw new Error("HTML element for exchange is not a button");
+    throw new Error("Button for exchange not found");
   }
-} else {
-  throw new Error("Button for exchange not found");
+}
+function getCopper() {
+  if (copper != null && copper instanceof HTMLInputElement) {
+    c = copper.valueAsNumber;
+  } else {
+    throw new Error("HTML element is null wrong type");
+  }
+}
+function getSilver() {
+  if (silver != null && silver instanceof HTMLInputElement) {
+    s = silver.valueAsNumber;
+  } else {
+    throw new Error("HTML element is null wrong type");
+  }
+}
+function getGold() {
+  if (gold != null && gold instanceof HTMLInputElement) {
+    g = gold.valueAsNumber;
+  } else {
+    throw new Error("HTML element is null wrong type");
+  }
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

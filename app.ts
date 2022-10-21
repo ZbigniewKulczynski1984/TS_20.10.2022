@@ -7,34 +7,48 @@ let g: number;
 let s: number;
 let c: number;
 
-if (btn !== null) {
-	if (btn instanceof HTMLButtonElement) {
-		btn.addEventListener<'click'>('click', (event: MouseEvent) => {
-			event.preventDefault();
-			event.stopPropagation();
-			if (gold != null && gold instanceof HTMLInputElement) {
-				g = gold.valueAsNumber;
-			} else {
-				throw new Error(`HTML element is null wrong type`);
-			}
+initEventListener();
 
-			if (silver != null && silver instanceof HTMLInputElement) {
-				s = silver.valueAsNumber;
-			} else {
-				throw new Error(`HTML element is null wrong type`);
-			}
+function initEventListener() {
+    if (btn !== null) {
+        if (btn instanceof HTMLButtonElement) {
+            btn.addEventListener<'click'>('click', (event: MouseEvent) => {
+                event.preventDefault();
+                event.stopPropagation();
+                getGold();
+                getSilver();
+                getCopper();
 
-			if (copper != null && copper instanceof HTMLInputElement) {
-				c = copper.valueAsNumber;
-			} else {
-				throw new Error(`HTML element is null wrong type`);
-			}
-
-			console.log(`${g} ${s} ${c}`);
-		});
-	} else {
-		throw new Error(`HTML element for exchange is not a button`);
-	}
-} else {
-	throw new Error(`Button for exchange not found`);
+            });
+        } else {
+            throw new Error(`HTML element for exchange is not a button`);
+        }
+    } else {
+        throw new Error(`Button for exchange not found`);
+    }
 }
+
+function getCopper() {
+    if (copper != null && copper instanceof HTMLInputElement) {
+        c = copper.valueAsNumber;
+    } else {
+        throw new Error(`HTML element is null wrong type`);
+    }
+}
+
+function getSilver() {
+    if (silver != null && silver instanceof HTMLInputElement) {
+        s = silver.valueAsNumber;
+    } else {
+        throw new Error(`HTML element is null wrong type`);
+    }
+}
+
+function getGold() {
+    if (gold != null && gold instanceof HTMLInputElement) {
+        g = gold.valueAsNumber;
+    } else {
+        throw new Error(`HTML element is null wrong type`);
+    }
+}
+
