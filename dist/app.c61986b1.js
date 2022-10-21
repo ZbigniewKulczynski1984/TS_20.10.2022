@@ -132,7 +132,11 @@ if (btn !== null) {
     btn.addEventListener('click', function (event) {
       event.preventDefault();
       event.stopPropagation();
-      newFunction();
+      if (gold != null && gold instanceof HTMLInputElement) {
+        g = gold.valueAsNumber;
+      } else {
+        throw new Error("HTML element is null wrong type");
+      }
       if (silver != null && silver instanceof HTMLInputElement) {
         s = silver.valueAsNumber;
       } else {
@@ -150,13 +154,6 @@ if (btn !== null) {
   }
 } else {
   throw new Error("Button for exchange not found");
-}
-function newFunction() {
-  if (gold != null && gold instanceof HTMLInputElement) {
-    g = gold.valueAsNumber;
-  } else {
-    throw new Error("HTML element is null wrong type");
-  }
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
